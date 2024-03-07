@@ -1,6 +1,6 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_users_getx/app/data/repositories/github_repository.dart';
+import 'package:flutter_users_getx/app/pages/details/details_page.dart';
+import 'package:flutter_users_getx/app/pages/home/home_binding.dart';
 import 'package:flutter_users_getx/app/pages/home/home_controller.dart';
 import 'package:get/get.dart';
 
@@ -17,11 +17,8 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    _controller = HomeController(
-      repository: GithubRepository(
-        dio: Dio(),
-      ),
-    );
+    setUpHome();
+    _controller = Get.find<HomeController>();
     _controller.getGithubUsers();
   }
 
@@ -67,7 +64,11 @@ class _HomePageState extends State<HomePage> {
                                 fontSize: 22,
                                 fontWeight: FontWeight.bold),
                           ),
-                          onTap: () {},
+                          onTap: () {
+                            Get.to(DetailsPage(
+                              username: user.login,
+                            ));
+                          },
                         );
                       },
                     );

@@ -6,8 +6,8 @@ class GithubUserModel {
   final String avatarUrl;
   final String? location;
   final String? name;
-  final String? followers;
-  final String? publicRepos;
+  final int? followers;
+  final int? publicRepos;
 
   GithubUserModel({
     required this.login,

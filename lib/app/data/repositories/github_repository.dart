@@ -18,4 +18,15 @@ class GithubRepository {
     }
     return users;
   }
+
+  Future<GithubUserModel> getGithubUser({required String username}) async {
+    final result = await dio.get('https://api.github.com/users/$username');
+
+    late GithubUserModel githubUser;
+
+    if (result.statusCode == 200) {
+      githubUser = GithubUserModel.fromMap(result.data);
+    }
+    return githubUser;
+  }
 }
